@@ -1,4 +1,4 @@
-#include <iostream>
+Ôªø#include <iostream>
 #include <vector>
 #include<string>
 #include <iomanip>
@@ -7,7 +7,8 @@
 #include <time.h>
 #include<fstream>
 using namespace std;
-double function(double x) { // —Ë„Ì‡Î
+
+double function(double x) { // –°–∏–≥–Ω–∞–ª
 	return sin(x) + 0.5;
 }
 std::vector<double> f_noise(std::vector<double> X) {
@@ -31,7 +32,7 @@ std::vector<double> f_filter(std::vector<double> fshu, std::vector<double> alpha
 	std::vector<double> fsr(101);
 	double buffer = 1;
 	for (int i = 0; i < 101; i++) {
-		// œÓ ÒÂ‰ÌÂÏÛ ‡ËÙÏÂÚË˜ÂÒÍÓÏÛ
+		// –ü–æ —Å—Ä–µ–¥–Ω–µ–º—É –∞—Ä–∏—Ñ–º–µ—Ç–∏—á–µ—Å–∫–æ–º—É
 		if (i == 0) fsr[i] = (fshu[i] * alpha[1]) + (fshu[i + 1] * alpha[2]);
 		if (i == 100) fsr[i] = (fshu[i - 1] * alpha[0]) + (fshu[i] * alpha[1]);
 		if (i != 100 && i != 0) fsr[i] = (fshu[i - 1] * alpha[0]) + (fshu[i] * alpha[1]) + (fshu[i + 1] * alpha[2]);
@@ -40,20 +41,20 @@ std::vector<double> f_filter(std::vector<double> fshu, std::vector<double> alpha
 }
 double w(std::vector<double> fs) {
 	double W = 0;
-	for (int i = 1; i < 101; i++) W += pow((fs[i] - fs[i - 1]), 2); // œÓ ≈‚ÍÎË‰Û
+	for (int i = 1; i < 101; i++) W += pow((fs[i] - fs[i - 1]), 2); // –ü–æ –ï–≤–∫–ª–∏–¥—É
 	return sqrt(W);
 }
 double delta(std::vector<double> fshu, std::vector<double> fs) {
 	double Delta = 0;
 	int K = 100;
 	for (int i = 0; i < 101; i++) {
-		Delta += pow((fs[i] - fshu[i]), 2); // œÓ ≈‚ÍÎË‰Û
+		Delta += pow((fs[i] - fshu[i]), 2); // –ü–æ –ï–≤–∫–ª–∏–¥—É
 	}
 	Delta = Delta / K;
 	return sqrt(Delta);
 }
 double J(double lamda, double W, double Delta) {
-	return lamda * W + (1 - lamda) * Delta; // ‘ÓÏÛÎˇ ‰Îˇ ‡Ò˜ÂÚ‡ ËÁ ÏÂÚÓ‰.ÔÓÒÓ·Ëˇ
+	return lamda * W + (1 - lamda) * Delta; // –§–æ—Ä–º—É–ª—è –¥–ª—è —Ä–∞—Å—á–µ—Ç–∞ –∏–∑ –º–µ—Ç–æ–¥.–ø–æ—Å–æ–±–∏—è
 }
 double dist(double W, double Delta) {
 	return sqrt(pow(W,2) + pow(Delta,2));

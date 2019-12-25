@@ -19,7 +19,8 @@ std::vector<double> f_noise(std::vector<double> X) {
 	}
 	return F;
 }
-std::vector<double> Alpha() {
+std::vector<double> Alpha()
+{
 	std::vector<double>alpha(3);
 	alpha[1] = (double)rand() / RAND_MAX;
 	alpha[0] = (1 - alpha[1]) / 2;
